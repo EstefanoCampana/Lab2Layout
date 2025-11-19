@@ -1,13 +1,21 @@
+import { useState } from "react";
 import { Button, StyleSheet, TextInput, View } from "react-native";
 
-const ToDoFormComp = () => {
+interface ToDoFormCompProps{
+  addTask: Function
+}
+
+const ToDoFormComp: React.FC<ToDoFormCompProps> = ({addTask}) => {
+  const [taskText, setTaskText] = useState('');
     return(
               <View style={styles.form}>
                 <TextInput
                   style={styles.input}
                   placeholder="Add a new task..."
-                />
-                <Button title="Add" />
+                  onChangeText={(text) => setTaskText(text)}
+                  value={taskText}/>
+                <Button onPress={() => {if(taskText === '') return;
+                                        else{addTask(taskText);setTaskText('')}}} title="Add" />
               </View>
     )
 }

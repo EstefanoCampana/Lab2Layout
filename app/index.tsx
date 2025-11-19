@@ -14,12 +14,15 @@ function App() {
   'Do laundry',
   'Go to gym',
   'Walk dog'
-]);
+  ]);
+  const addTask = (task: string) => {
+    setTasks([...tasks,task]);
+  }
 
   return (
     <SafeAreaView>
       <ToDoListComp tasks={tasks}/>
-      <ToDoFormComp/>
+      <ToDoFormComp addTask={addTask}/>
     </SafeAreaView>
   );
 }
